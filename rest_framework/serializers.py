@@ -151,7 +151,7 @@ def _get_declared_fields(bases, attrs):
         if hasattr(base, 'base_fields'):
             fields = list(base.base_fields.items()) + fields
 
-    for field_name, field in fields.items():
+    for field_name, field in fields:
         if not getattr(field, '_name', None):
             field.set_name(field_name)
 
