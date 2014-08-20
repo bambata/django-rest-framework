@@ -151,7 +151,7 @@ def _get_declared_fields(bases, attrs):
         if hasattr(base, 'base_fields'):
             fields = list(base.base_fields.items()) + fields
 
-    for field_name, field in fields.items:
+    for field_name, field in fields.items():
         if not getattr(field, '_name', None):
             field.set_name(field_name)
 
@@ -795,6 +795,10 @@ class ModelSerializer(Serializer):
                 "on serializer '%s'." %
                 (field_name, self.__class__.__name__))
             ret[field_name].write_only = True
+
+        for field_name, field in ret.items():
+            if not getattr(field, '_name', None):
+                field.set_name(field_name)
 
         return ret
 
