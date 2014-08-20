@@ -246,6 +246,9 @@ class Field(object):
                 metadata[attr] = force_text(value, strings_only=True)
         return metadata
 
+    def set_name(self, name):
+        self._name = name
+
 
 class WritableField(Field):
     """
