@@ -146,6 +146,7 @@ class Field(object):
         self._errors = []
         self._value = None
         self._name = name
+        self.name = name
 
     @property
     def errors(self):
@@ -248,6 +249,7 @@ class Field(object):
 
     def set_name(self, name):
         self._name = name
+        self.name = name
 
 
 class WritableField(Field):
