@@ -125,7 +125,7 @@ class Field(object):
     type_label = 'field'
     widget = None
 
-    def __init__(self, source=None, label=None, help_text=None):
+    def __init__(self, source=None, label=None, help_text=None, name=''):
         self.parent = None
 
         self.creation_counter = Field.creation_counter
@@ -145,7 +145,7 @@ class Field(object):
 
         self._errors = []
         self._value = None
-        self._name = None
+        self._name = name
 
     @property
     def errors(self):
@@ -263,7 +263,7 @@ class WritableField(Field):
     def __init__(self, source=None, label=None, help_text=None,
                  read_only=False, write_only=False, required=None,
                  validators=[], error_messages=None, widget=None,
-                 default=None, blank=None):
+                 default=None, blank=None, name=''):
 
         # 'blank' is to be deprecated in favor of 'required'
         if blank is not None:
@@ -272,7 +272,7 @@ class WritableField(Field):
                           DeprecationWarning, stacklevel=2)
             required = not(blank)
 
-        super(WritableField, self).__init__(source=source, label=label, help_text=help_text)
+        super(WritableField, self).__init__(source=source, label=label, help_text=help_text, name=name)
 
         self.read_only = read_only
         self.write_only = write_only
